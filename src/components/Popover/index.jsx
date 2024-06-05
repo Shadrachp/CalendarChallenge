@@ -18,10 +18,9 @@ const Popover = ({ action, btnClass, label, shouldShowPopover = false, onShowPop
             if (action) {
                 action(shouldShowPopover);
             }
-            // setTimeout(() => {
-            //     setCanToggle(true);
-            // }, 250);
-            setCanToggle(true);
+            setTimeout(() => {
+                setCanToggle(true);
+            }, 250);
         }
     };
 
@@ -30,10 +29,9 @@ const Popover = ({ action, btnClass, label, shouldShowPopover = false, onShowPop
     };
 
     const handleOutsideClick = (e) => {
-        // TODO: Fix bug with outside click
-        // if (popoverRef.current && !popoverRef.current.contains(e.target)) {
-        //     togglePopover();
-        // }
+        if (popoverRef.current && !popoverRef.current.contains(e.target)) {
+            togglePopover();
+        }
     };
 
     return (
