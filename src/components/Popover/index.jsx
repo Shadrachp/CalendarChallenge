@@ -2,15 +2,13 @@ import { useRef, useState } from 'react';
 
 import './styles.css';
 
-const Popover = ({ action, btnClass, label, children }) => {
-    const [currentState, setCurrentState] = useState('hide');
+const Popover = ({ action, btnClass, label, shouldShowPopover = false, onShowPopover, children }) => {
     const [canToggle, setCanToggle] = useState(true);
     const popoverRef = useRef(null);
 
     const togglePopover = () => {
-        const shouldShowPopover = currentState === 'hide';
         if (canToggle) {
-            setCurrentState(shouldShowPopover ? 'show' : 'hide');
+            onShowPopover(!shouldShowPopover);
             setCanToggle(false);
             if (shouldShowPopover) {
                 document.addEventListener('mousedown', handleOutsideClick, false);
@@ -50,14 +48,16 @@ const Popover = ({ action, btnClass, label, children }) => {
             >
                 {label}
             </a>
-            <div
-                className={`popover popover--${currentState}`}
-                ref={(node) => {
-                    popoverRef.current = node;
-                }}
-            >
-                {currentState !== 'hide' ? children : ''}
-            </div>
+            {shouldShowPopover && (
+                <div
+                    className={`popover popover--show`}
+                    ref={(node) => {
+                        popoverRef.current = node;
+                    }}
+                >
+                    {{...children}}
+                </div>
+            )}
         </div>
     );
 }

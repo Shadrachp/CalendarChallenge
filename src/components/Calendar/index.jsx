@@ -83,11 +83,12 @@ const CalendarDays = ({ selectionDate, currentDate, onChangeCurrentDate }) => {
     );   
 }
 
-const Calendar = ({ selectedDate = new Date(), onChangeSelectedDate }) => {
+const Calendar = ({ selectedDate = new Date(), onChangeSelectedDate, onSelect }) => {
 
     const [selectionDate, setSelectionDate] = useState(selectedDate);
     const changeCurrentDate = (day) => {
         onChangeSelectedDate(new Date(day.year, day.month, day.number));
+        onSelect?.();
     };
 
     const handleRightArrowClick = () =>{
