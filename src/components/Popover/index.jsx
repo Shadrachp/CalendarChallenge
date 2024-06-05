@@ -13,7 +13,6 @@ const Popover = ({ action, btnClass, label, children }) => {
             setCurrentState(shouldShowPopover ? 'show' : 'hide');
             setCanToggle(false);
             if (shouldShowPopover) {
-                console.log("test", {shouldShowPopover});
                 document.addEventListener('mousedown', handleOutsideClick, false);
             } else {
                 document.removeEventListener('mousedown', handleOutsideClick, false);
@@ -57,7 +56,7 @@ const Popover = ({ action, btnClass, label, children }) => {
                     popoverRef.current = node;
                 }}
             >
-                {children}
+                {currentState !== 'hide' ? children : ''}
             </div>
         </div>
     );
