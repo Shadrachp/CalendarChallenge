@@ -39,7 +39,7 @@ const Popover = ({ action, btnClass, label, children }) => {
     };
 
     return (
-        <div className="container">
+        <div className="popover-container">
             <a
                 href="#"
                 className={btnClass}

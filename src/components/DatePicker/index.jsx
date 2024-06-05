@@ -3,9 +3,10 @@ import Popover from "../Popover";
 import { toIsoString } from "../utils";
 import "./styles.css";
 
-const DatePicker = ({ selectedDate = new Date(), onChangeSelectedDate }) => {
+const DatePicker = ({ selectedDate = new Date(), onChangeSelectedDate, containerClasses }) => {
+
     return (
-        <>
+        <div className={containerClasses}>
             <Popover
                 label={
                     <input value={toIsoString(selectedDate).split('T')[0]} readOnly />
@@ -16,7 +17,7 @@ const DatePicker = ({ selectedDate = new Date(), onChangeSelectedDate }) => {
                     onChangeSelectedDate={onChangeSelectedDate}
                 />
             </Popover>
-        </>
+        </div>
     );
 };
 
